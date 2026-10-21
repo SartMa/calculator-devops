@@ -42,5 +42,11 @@ class CalculatorControllerTest {
                 .andExpect(jsonPath("$.message").value("Required Parameter b missing"));
     }
 
-
+    @Test
+    void invalidParameterTest() throws Exception {
+        mockMvc.perform(get("/api/v1/divide").param("a", "hello").param("b", "2"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400))
+                .andExpect(jsonPath("$.message").value("Parameter a must be a number, but was hello"));
+    }
 }
