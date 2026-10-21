@@ -1,5 +1,7 @@
 package com.sarthak.calculator.controller;
 
+import com.sarthak.calculator.exception.ZeroDivideException;
+import com.sarthak.calculator.model.ErrorResponse;
 import com.sarthak.calculator.services.CalculatorService;
 import com.sarthak.calculator.model.Result;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +35,7 @@ public class CalculatorController {
     }
 
     @GetMapping("divide")
-    public Result divide(@RequestParam() double a, @RequestParam() double b) {
+    public Result divide(@RequestParam() double a, @RequestParam() double b) throws ZeroDivideException {
         res = service.divide(a, b);
         return new Result("divide", a, b, res);
     }

@@ -1,5 +1,6 @@
 package com.sarthak.calculator.services;
 
+import com.sarthak.calculator.exception.ZeroDivideException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,8 +17,8 @@ public class CalculatorService {
         return num1 - num2;
     }
 
-    public double divide(double divisor, double dividend) throws Exception{
-        if(dividend == 0)throw new Exception("Zero divide");
+    public double divide(double divisor, double dividend) throws ZeroDivideException {
+        if(dividend == 0)throw new ZeroDivideException("Division by Zero");
         return divisor/dividend;
     }
 }
