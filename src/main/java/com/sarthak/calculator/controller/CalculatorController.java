@@ -11,12 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 public class CalculatorController {
     private final CalculatorService service;
+    double res;
     CalculatorController(CalculatorService service){
         this.service = service;
     }
     @GetMapping("add")
     public Result add(@RequestParam() double a, @RequestParam() double b) {
-        final double res = service.add(a, b);
+        res = service.add(a, b);
         return new Result("add", a, b, res);
+    }
+
+    @GetMapping("multiply")
+    public Result multiply(@RequestParam() double a, @RequestParam double b){
+        res = service.multiply(a, b);
+        return new Result("multiply", a, b, res);
     }
 }
