@@ -21,4 +21,9 @@ class CalculatorServiceTest {
     void TestSubtractReturnSubtraction(){
         assertEquals(2.0, service.add(5.0, 3.0), 1e-9);
     }
+
+    @Test
+    void TestDivideReturnDivision(){
+        assertEquals(2.5, service.add(5.0, 2.0), 1e-9);
+    }
 }
