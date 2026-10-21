@@ -17,8 +17,8 @@ public class CalculatorService {
         return num1 - num2;
     }
 
-    public double divide(double divisor, double dividend) throws ZeroDivideException {
-        if(dividend == 0)throw new ZeroDivideException("Division by Zero");
-        return divisor/dividend;
+    public double divide(double dividend, double divisor) throws ZeroDivideException {
+        if(divisor == 0)throw new ZeroDivideException("Division by Zero");
+        return dividend/divisor;
     }
 }
