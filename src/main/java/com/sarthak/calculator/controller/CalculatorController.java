@@ -11,30 +11,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 public class CalculatorController {
     private final CalculatorService service;
-    double res;
     CalculatorController(CalculatorService service){
         this.service = service;
     }
     @GetMapping("add")
     public Result add(@RequestParam() double a, @RequestParam() double b) {
-        res = service.add(a, b);
+        double res = service.add(a, b);
         return new Result("add", a, b, res);
     }
 
     @GetMapping("multiply")
     public Result multiply(@RequestParam() double a, @RequestParam double b){
-        res = service.multiply(a, b);
+        double res = service.multiply(a, b);
         return new Result("multiply", a, b, res);
     }
     @GetMapping("subtract")
     public Result subtract(@RequestParam() double a, @RequestParam double b){
-        res = service.subtract(a, b);
+        double res = service.subtract(a, b);
         return new Result("subtract", a, b, res);
     }
 
     @GetMapping("divide")
-    public Result divide(@RequestParam() double a, @RequestParam() double b) {
-        res = service.divide(a, b);
+    public Result divide(@RequestParam() double a, @RequestParam() double b) throws RuntimeException {
+        double res = service.divide(a, b);
         return new Result("divide", a, b, res);
     }
 }
