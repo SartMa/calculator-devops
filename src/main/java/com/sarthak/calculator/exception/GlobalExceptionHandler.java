@@ -23,7 +23,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ErrorResponse> handleMethodMismatch(MethodArgumentTypeMismatchException e){
-        ErrorResponse body = new ErrorResponse(400, "Bad Request", "Parameter " + e.getName() + " throw " + e.getCause());
+        ErrorResponse body = new ErrorResponse(400, "Bad Request", "Parameter " + e.getName() + " must be a number, but was " + e.getValue());
         return ResponseEntity.badRequest().body(body);
     }
 }

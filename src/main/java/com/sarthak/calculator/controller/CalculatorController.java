@@ -33,7 +33,7 @@ public class CalculatorController {
     }
 
     @GetMapping("divide")
-    public Result divide(@RequestParam() double a, @RequestParam() double b) throws ZeroDivideException {
+    public Result divide(@RequestParam() double a, @RequestParam() double b) {
         double res = service.divide(a, b);
         return new Result("divide", a, b, res);
     }
