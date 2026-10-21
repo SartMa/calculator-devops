@@ -31,4 +31,10 @@ public class CalculatorController {
         res = service.subtract(a, b);
         return new Result("subtract", a, b, res);
     }
+
+    @GetMapping("divide")
+    public Result divide(@RequestParam() double a, @RequestParam() double b) {
+        res = service.divide(a, b);
+        return new Result("divide", a, b, res);
+    }
 }
