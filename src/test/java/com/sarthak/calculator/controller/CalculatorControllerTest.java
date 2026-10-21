@@ -30,7 +30,7 @@ class CalculatorControllerTest {
     void multiplyReturnsJsonResult() throws Exception {
         mockMvc.perform(get("/api/v1/multiply").param("a", "2").param("b", "3"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.operation").value("add"))
+                .andExpect(jsonPath("$.operation").value("multiply"))
                 .andExpect(jsonPath("$.result").value(6.0));
     }
 
@@ -39,7 +39,7 @@ class CalculatorControllerTest {
         mockMvc.perform(get("/api/v1/subtract").param("a", "2"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.status").value(400))
-                .andExpect(jsonPath("$.message").value("Required Parameter b missing"));
+                .andExpect(jsonPath("$.message").value("Required Parameter b missing."));
     }
 
     @Test
