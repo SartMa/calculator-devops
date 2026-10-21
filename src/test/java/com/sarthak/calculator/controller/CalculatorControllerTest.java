@@ -9,7 +9,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.junit.jupiter.api.Assertions.*;
 
 @WebMvcTest(CalculatorController.class)
 @Import(CalculatorService.class)
@@ -32,6 +31,30 @@ class CalculatorControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.operation").value("multiply"))
                 .andExpect(jsonPath("$.result").value(6.0));
+    }
+
+    @Test
+    void subtractReturnsJsonResult() throws Exception {
+        mockMvc.perform(get("/api/v1/subtract").param("a", "2").param("b", "3"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.operation").value("subtract"))
+                .andExpect(jsonPath("$.result").value(-1.0));
+    }
+
+    @Test
+    void divideReturnsJsonResult() throws Exception {
+        mockMvc.perform(get("/api/v1/divide").param("a", "2").param("b", "3"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.operation").value("divide"))
+                .andExpect(jsonPath("$.result").value(2/3));
+    }
+
+    @Test
+    void divideByZeroTest() throws Exception {
+        mockMvc.perform(get("/api/v1/divide").param("a", "2").param("b", "0"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400))
+                .andExpect(jsonPath("$.message").value("Division by Zero"));
     }
 
     @Test
