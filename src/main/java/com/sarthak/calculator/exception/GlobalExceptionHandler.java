@@ -17,13 +17,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ResponseEntity<ErrorResponse> handleMissingParameters(MissingServletRequestParameterException e){
-        ErrorResponse body = new ErrorResponse(400, "Bad Request", e.getParameterName());
+        ErrorResponse body = new ErrorResponse(400, "Bad Request", "Required Parameter " + e.getParameterName() + " missing.");
         return ResponseEntity.badRequest().body(body);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ErrorResponse> handleMethodMismatch(MethodArgumentTypeMismatchException e){
-        ErrorResponse body = new ErrorResponse(400, "Bad Request", e.getName());
+        ErrorResponse body = new ErrorResponse(400, "Bad Request", "Parameter " + e.getName() + " throw " + e.getCause());
         return ResponseEntity.badRequest().body(body);
     }
 }
