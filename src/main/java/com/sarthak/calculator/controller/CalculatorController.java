@@ -26,4 +26,9 @@ public class CalculatorController {
         res = service.multiply(a, b);
         return new Result("multiply", a, b, res);
     }
+    @GetMapping("subtract")
+    public Result subtract(@RequestParam() double a, @RequestParam double b){
+        res = service.subtract(a, b);
+        return new Result("subtract", a, b, res);
+    }
 }
