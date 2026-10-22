@@ -42,21 +42,19 @@ pipeline {
     }
 
     post {
-        post {
-            success {
-                emailext(
-                    to: 'sarthaktechindia@gmail.com',
-                    subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                    body: "Build succeeded.\n\nDetails: ${env.BUILD_URL}"
-                )
-            }
-            failure {
-                emailext(
-                    to: 'sarthaktechindia@gmail.com',
-                    subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                    body: "Build failed.\n\nConsole log: ${env.BUILD_URL}console"
-                )
-            }
+        success {
+            emailext(
+                to: 'sarthaktechindia@gmail.com',
+                subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Build succeeded.\n\nDetails: ${env.BUILD_URL}"
+            )
+        }
+        failure {
+            emailext(
+                to: 'sarthaktechindia@gmail.com',
+                subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Build failed.\n\nConsole log: ${env.BUILD_URL}console"
+            )
         }
     }
 }

@@ -10,7 +10,7 @@ RUN ./mvnw package -DskipTests -B
 FROM eclipse-temurin:21-jre-alpine
 RUN addgroup -S appuser && adduser -S appuser -G appuser
 WORKDIR /work
-EXPOSE 8081
+EXPOSE 8080
 COPY --from=build --chown=appuser:appuser /app/target/calculator-0.0.1-SNAPSHOT.jar app.jar
 USER appuser
 ENTRYPOINT ["java", "-jar", "app.jar"]
