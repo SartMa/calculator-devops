@@ -14,3 +14,4 @@ EXPOSE 8080
 COPY --from=build --chown=appuser:appuser /app/target/calculator-0.0.1-SNAPSHOT.jar app.jar
 USER appuser
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
