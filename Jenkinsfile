@@ -38,7 +38,15 @@ pipeline {
                 }
             }
         }
-        // stage('Deploy') — add after docker-compose.yml exists
+        stage('Deploy') {
+            steps {
+                // --wait blocks until every service with a healthcheck reports healthy (fails the step otherwise)
+                sh "TAG=${BUILD_NUMBER} docker compose up -d --wait --wait-timeout 120 --remove-orphans"
+                // end-to-end smoke test through nginx
+                sh 'curl -fsS "http://localhost:8081/api/v1/add?a=2&b=3"'
+                sh 'curl -fsS http://localhost:8081/actuator/health'
+            }
+        }
     }
 
     post {
