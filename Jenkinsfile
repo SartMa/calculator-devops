@@ -14,7 +14,7 @@ pipeline {
             steps { checkout scm }
         }
         stage('Build') {
-            steps { sh './mvnw package -DskipTests -B' }
+            steps { sh './mvnw clean package -DskipTests -B' }
         }
         stage('Test') {
             steps {
